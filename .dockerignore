@@ -1,0 +1,41 @@
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Build outputs
+build/
+*/build/
+**/build/
+out/
+*/out/
+bin/
+*/bin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.eclipse/
+*.swp
+*.swo
+
+# Gradle
+.gradle/
+*/.gradle/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+.env
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# Temp files
+*.log
+*.tmp
+*.bak

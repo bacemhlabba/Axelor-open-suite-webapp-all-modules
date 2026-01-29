@@ -1,0 +1,60 @@
+# =============================================
+# Axelor Open Suite - Docker Compose
+# =============================================
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16
+    container_name: axelor-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-axelor}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-axelor}
+      POSTGRES_DB: ${POSTGRES_DB:-axelor}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-axelor} -d ${POSTGRES_DB:-axelor}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - axelor-network
+
+  # Axelor Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: axelor-app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    environment:
+      # Java memory settings
+      CATALINA_OPTS: >-
+        -Xms${JAVA_XMS:-1024m} -Xmx${JAVA_XMX:-4096m} -Daxelor.config=/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/axelor-config.properties
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - app_data:/opt/axelor/data
+      - app_logs:/opt/axelor/logs
+      - ./src/main/resources/axelor-config.properties:/usr/local/tomcat/conf/axelor-config.properties:ro
+    networks:
+      - axelor-network
+
+volumes:
+  postgres_data:
+    name: axelor-postgres-data
+  app_data:
+    name: axelor-app-data
+  app_logs:
+    name: axelor-app-logs
+
+networks:
+  axelor-network:
+    name: axelor-network
+    driver: bridge

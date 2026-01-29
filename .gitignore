@@ -1,47 +1,44 @@
 # Gradle
-build
-.gradle
+build/
+.gradle/
+gradle/
+!gradle/wrapper/gradle-wrapper.jar
 
-# Eclispe
-bin
+# Eclipse
+bin/
 .project
 .classpath
-.settings
-.metadata
+.settings/
+.metadata/
 
-# Intellij
-out
-.idea
+# IntelliJ IDEA
+.idea/
 *.iml
-*.ipr
 *.iws
-atlassian-ide-plugin.xml
+*.ipr
+out/
 
-# NetBeans
-.nbattrs
+# VS Code
+.vscode/
 
-# virtual machine crash logs
-hs_err_pid*
+# Build artifacts
+dist/
+target/
 
-# Backup files
-*.sw[nop]
-*~
-.#*
-[#]*#
-
-# dotenv or direnv
-.env
-.envrc
-
-# Miscellaneous
-*.log
-.clover
+# OS specific files
 .DS_Store
+Thumbs.db
 
-# Profiler and heap dumps
-*.jps
-*.hprof
-/.nb-gradle/
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# JavaScript
-node_modules
+# Docker
+.docker/
+
+# Environment variables
+.env
+.env.local
+

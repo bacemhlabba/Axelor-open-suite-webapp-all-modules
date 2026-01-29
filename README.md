@@ -17,6 +17,16 @@ Axelor Open Suite includes the following modules :
 Axelor Open Suite is built on top of [Axelor Open Platform](https://github.com/axelor/axelor-open-platform)
 
 
+
+Screenshots
+================================
+
+### Login Page
+![Login Page](docs/screenshots/login.png)
+
+### Dashboard
+![Dashboard](docs/screenshots/dashboard.png)
+
 Installation
 ================================
 
