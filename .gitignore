@@ -1,8 +1,9 @@
 # Gradle
 build/
 .gradle/
-gradle/
-!gradle/wrapper/gradle-wrapper.jar
+gradle/*
+!gradle/wrapper/
+
 
 # Eclipse
 bin/
